@@ -99,7 +99,7 @@
                         <h3>Tipo de Entrega</h3>
                         <div class="radio-group">
                             <label class="radio-option">
-                                <input type="radio" name="delivery" value="pickup" checked onchange="updateDelivery()">
+                                <input type="radio" name="delivery" value="pickup" checked>
                                 <div class="radio-content">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -112,7 +112,7 @@
                                 </div>
                             </label>
                             <label class="radio-option">
-                                <input type="radio" name="delivery" value="delivery" onchange="updateDelivery()">
+                                <input type="radio" name="delivery" value="delivery">
                                 <div class="radio-content">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <rect x="1" y="3" width="15" height="13"></rect>
@@ -162,7 +162,7 @@
                         <h3>Cupom de Desconto</h3>
                         <div class="coupon-input-group">
                             <input type="text" placeholder="Digite seu cupom" class="coupon-input" id="coupon-code">
-                            <button class="apply-coupon-btn" onclick="applyCoupon()">Aplicar</button>
+                            <button class="apply-coupon-btn" type="button">Aplicar</button>
                         </div>
                     </div>
 
@@ -306,70 +306,5 @@
         </div>
     </footer>
 
-    <script>
-        // Atualizar preço total
-        function updateDelivery() {
-            const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
-            const deliveryFeeElement = document.getElementById('delivery-fee');
-            const totalElement = document.getElementById('total-price');
-            const addressSection = document.getElementById('delivery-address');
-            
-            let deliveryFee = 0;
-            if (deliveryType === 'delivery') {
-                deliveryFee = 8.00;
-                addressSection.style.display = 'block';
-            } else {
-                addressSection.style.display = 'none';
-            }
-            
-            deliveryFeeElement.textContent = 'R$ ' + deliveryFee.toFixed(2).replace('.', ',');
-
-            const subtotalText = document.getElementById('subtotal-price').textContent
-                .replace('R$ ', '')
-                .replace('.', '')
-                .replace(',', '.');
-            const subtotal = parseFloat(subtotalText) || 0;
-            const total = subtotal + deliveryFee;
-            totalElement.textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
-        }
-
-        // Aumentar Quantidade
-        function increaseQuantity(itemId) {
-            const input = document.getElementById('qty-' + itemId);
-            input.value = parseInt(input.value) + 1;
-            updateItemTotal(itemId);
-        }
-
-        // Diminuir Quantidade
-        function decreaseQuantity(itemId) {
-            const input = document.getElementById('qty-' + itemId);
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-                updateItemTotal(itemId);
-            }
-        }
-
-        // Atualizar total de items
-        function updateItemTotal(itemId) {
-            console.log('Updating item ' + itemId);
-        }
-
-        // Remover item
-        function removeItem(itemId) {
-            if (confirm('Deseja remover este item do carrinho?')) {
-                console.log('Removing item ' + itemId);
-            }
-        }
-
-        // Aplicar cupom
-        function applyCoupon() {
-            const couponCode = document.getElementById('coupon-code').value;
-            if (couponCode) {
-                alert('Cupom "' + couponCode + '" aplicado com sucesso!');
-            } else {
-                alert('Por favor, digite um código de cupom.');
-            }
-        }
-    </script>
 </body>
 </html>
