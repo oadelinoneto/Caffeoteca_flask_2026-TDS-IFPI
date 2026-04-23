@@ -23,7 +23,7 @@
                 <h1>Café Artesanal</h1>
             </div>
             <nav class="breadcrumb">
-                <a href="/menu">Cardápio</a>
+                <a href="{{ url_for('menu', username=request.args.get('username'), cart_id=cart_ids) }}">Cardápio</a>
                 <span>›</span>
                 <span>Carrinho</span>
             </nav>
@@ -79,7 +79,7 @@
 
                 <!-- Continuar as Compras -->
                 <div class="continue-shopping">
-                    <a href="/menu" class="continue-btn">
+                    <a href="{{ url_for('menu', username=request.args.get('username'), cart_id=cart_ids) }}" class="continue-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="19" y1="12" x2="5" y2="12"></line>
                             <polyline points="12 19 5 12 12 5"></polyline>
@@ -300,7 +300,7 @@
             <p>&copy; 2025 Café Artesanal. Todos os direitos reservados.</p>
             <div class="footer-links">
                 <a href="/">Início</a>
-                <a href="/menu">Cardápio</a>
+                <a href="{{ url_for('menu', username=request.args.get('username'), cart_id=cart_ids) }}">Cardápio</a>
                 <a href="/perfil">Perfil</a>
             </div>
         </div>
